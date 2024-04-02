@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "william-taro",
+  "appid": "wx9ce24bef0aed137f",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}

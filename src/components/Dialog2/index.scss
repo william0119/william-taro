@@ -1,0 +1,32 @@
+.dialog {
+  .mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: .5;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .main {
+    background-color: #fff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    min-height: 600px;
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      text-align: center;
+    }
+  }
+}

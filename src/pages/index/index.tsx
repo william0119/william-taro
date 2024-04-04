@@ -1,58 +1,55 @@
 import { View, Button } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+import Dialog from '@/components/Dialog'
+import DialogManager from '@/utils/manager/DialogManager'
 import ActionManager from '@/utils/manager/ActionManager'
 // import Dialog1 from '@/components/Dialog1'
 // import Dialog2 from '@/components/Dialog2'
 // import Dialog3 from '@/components/Dialog3'
-// import { useState } from 'react'
-import DialogManager from '@/utils/manager/DialogManager'
 import './index.scss'
 
 export default function Index() {
-  // const [showDialog1, setShowDialog1] = useState<boolean>(false)
-  // const [showDialog2, setShowDialog2] = useState<boolean>(false)
-  // const [showDialog3, setShowDialog3] = useState<boolean>(false)
-
   useLoad(() => {
     console.log('Page loaded.')
   })
 
-  // const handeCloseDialog1 = () => {
-  //   setShowDialog1(false)
-  // }
-
-  // const handeCloseDialog2 = () => {
-  //   setShowDialog2(false)
-  // }
-
-  // const handeCloseDialog3 = () => {
-  //   setShowDialog3(false)
-  // }
-
   const handleClick = () => {
-    // Taro.navigateTo({
-    //   url: '/pages/test/index'
-    // })
+    ActionManager.enQueue(
+      () => {
+        // 打开弹窗1
+        DialogManager.show({
+          name: 'dialog1',
+          data: { name: 'dialog1', title: 'dialog11111111' }
+        })
+      },
+      { name: 'dialog1', weight: 0, series: true, exec: false }
+    ).start()
 
-    // setShowDialog1(true)
-    // setShowDialog2(true)
-    // setShowDialog3(true)
-
-    ActionManager.enQueue(() => {
-      // 打开弹窗1
-      DialogManager.show({
-        name: 'dialog1111',
-        data: { name: 'dialog1', title: 'dialog11111111' }
-      })
-    }).start()
+    ActionManager.on(
+      'done',
+      () => {
+        ActionManager.enQueue(
+          () => {
+            // 打开弹窗1
+            DialogManager.show({
+              name: 'dialog2',
+              data: { name: 'dialog2', title: 'dialog222222222222222' }
+            })
+          },
+          { name: 'dialog2', weight: 0, series: true, exec: false }
+        ).start()
+      },
+      {
+        namespace: '_ORCHARD_CLOSE_RENDER_',
+        once: true
+      }
+    )
   }
 
   return (
     <View className='index'>
       <Button onClick={handleClick}>Hello world!</Button>
-      {/* <Dialog1 show={showDialog1} onClose={handeCloseDialog1} />
-      <Dialog2 show={showDialog2} onClose={handeCloseDialog2} />
-      <Dialog3 show={showDialog3} onClose={handeCloseDialog3} /> */}
+      <Dialog />
     </View>
   )
 }

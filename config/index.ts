@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
@@ -17,6 +18,9 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
+    alias: {
+      '@': path.resolve(__dirname, '..', 'src')
+    },
     plugins: [],
     defineConstants: {
     },

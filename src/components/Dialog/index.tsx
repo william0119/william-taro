@@ -2,13 +2,13 @@ import { View } from '@tarojs/components'
 import Dialog1 from '@/components/Dialog1'
 import Dialog2 from '@/components/Dialog2'
 import Dialog3 from '@/components/Dialog3'
+import { useEffect, useState } from 'react'
 import DialogManager from '@/utils/manager/DialogManager'
 import ActionManager from '@/utils/manager/ActionManager'
-import { useEffect, useState } from 'react'
 
 interface DialogData {
   name: string
-  data: { [key: string]: any }
+  title: string
 }
 
 export default function Dialog() {
@@ -16,7 +16,7 @@ export default function Dialog() {
 
   const [dialogData, setDialogData] = useState<DialogData>({
     name: '',
-    data: {}
+    title: ''
   })
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Dialog() {
           // 清空弹窗数据
           setDialogData({
             name: '',
-            data: {}
+            title: ''
           })
 
           // 隐藏弹窗
@@ -51,11 +51,11 @@ export default function Dialog() {
       )
   }, [])
 
-  return (
+  return dialogName ? (
     <View>
-      {dialogName === 'dialog1'} && <Dialog1 dialogData={dialogData} />
-      {dialogName === 'dialog2'}&& <Dialog2 dialogData={dialogData} />
-      {dialogName === 'dialog3'} && <Dialog3 dialogData={dialogData} />
+      {dialogName === 'dialog1' && <Dialog1 dialogData={dialogData} />}
+      {dialogName === 'dialog2' && <Dialog2 dialogData={dialogData} />}
+      {dialogName === 'dialog3' && <Dialog3 dialogData={dialogData} />}
     </View>
-  )
+  ) : null
 }

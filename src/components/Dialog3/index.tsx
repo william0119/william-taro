@@ -4,7 +4,7 @@ import './index.scss'
 
 interface DialogData {
   name: string
-  data: { [key: string]: any }
+  title: string
 }
 
 type IProps = {
@@ -20,7 +20,7 @@ export default function Dialog1({ dialogData }: IProps) {
     <View className='dialog'>
       <View className='mask' onClick={onClose}></View>
       <View className='main'>
-        <View className='title'>{dialogData.data.title}</View>
+        <View className='title'>{dialogData.title}</View>
         <Button onClick={onClose}>关闭3</Button>
       </View>
     </View>

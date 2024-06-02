@@ -1,0 +1,44 @@
+.wrapper {
+  position: relative;
+
+  .popup {
+    position: fixed;
+    top: 30%;
+    left: 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 750px;
+    border-radius: 10px;
+    border-top: 1px solid red;
+
+
+    scroll-view {
+      max-height: 300px;
+    }
+
+    .box {
+      position: relative;
+    }
+
+    .container {
+      width: 750px;
+      height: 600px;
+      transition: width 0.5s, height 0.5s;
+      background-color: aquamarine;
+      // position: sticky;
+      // top: 0;
+      // margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    Image {
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .list {
+      background-color: lightpink;
+    }
+
+  }
+}
